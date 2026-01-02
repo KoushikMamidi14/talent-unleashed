@@ -27,7 +27,7 @@ export const Header = () => {
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-display font-bold text-xl text-foreground group-hover:text-gradient transition-all duration-300">
-              TalentHub
+              TalentTrack
             </span>
           </Link>
 
