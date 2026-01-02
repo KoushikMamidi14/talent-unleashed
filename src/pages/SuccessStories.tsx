@@ -110,7 +110,7 @@ const SuccessStories = () => {
               Write Your Own <span className="text-gradient">Success Story</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-8">
-              Join TalentHub today and start your journey towards recognition and success.
+              Join TalentTrack today and start your journey towards recognition and success.
             </p>
             <Button variant="hero" size="xl" asChild>
               <Link to="/create-profile">

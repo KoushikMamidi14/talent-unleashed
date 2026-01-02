@@ -41,7 +41,7 @@ export const Footer = () => {
                 <Sparkles className="w-5 h-5 text-primary-foreground" />
               </div>
               <span className="font-display font-bold text-xl text-foreground">
-                TalentHub
+                TalentTrack
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-sm">
@@ -115,7 +115,7 @@ export const Footer = () => {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} TalentHub. All rights reserved.
+            © {new Date().getFullYear()} TalentTrack. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Made with ❤️ for talented individuals everywhere
