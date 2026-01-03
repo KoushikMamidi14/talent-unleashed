@@ -18,6 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 const loginSchema = z.object({
   email: z
@@ -48,12 +50,8 @@ const Login = () => {
   const onSubmit = async (values: LoginFormValues) => {
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      // Here you would typically make an API call to authenticate
-      // For now, we'll just simulate a successful login
-      console.log("Login attempt:", values);
+      // Sign in with Firebase Authentication
+      await signInWithEmailAndPassword(auth, values.email, values.password);
       
       toast({
         title: "Login successful!",
@@ -62,10 +60,27 @@ const Login = () => {
 
       // Redirect to home page or dashboard
       navigate("/");
-    } catch (error) {
+    } catch (error: any) {
+      let errorMessage = "Invalid email or password. Please try again.";
+      
+      // Handle specific Firebase error codes
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "No account found with this email address.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Incorrect password. Please try again.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Invalid email address format.";
+      } else if (error.code === "auth/user-disabled") {
+        errorMessage = "This account has been disabled.";
+      } else if (error.code === "auth/too-many-requests") {
+        errorMessage = "Too many failed login attempts. Please try again later.";
+      } else if (error.code === "auth/network-request-failed") {
+        errorMessage = "Network error. Please check your connection and try again.";
+      }
+      
       toast({
         title: "Login failed",
-        description: "Invalid email or password. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
